@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aim",
+                    "name": "GamepadAim",
                     "type": "PassThrough",
                     "id": "b1a1e372-3883-44cd-9add-3a66b17ceb5b",
                     "expectedControlType": "Axis",
@@ -147,8 +147,8 @@
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone",
-                    "groups": "KeyboardMouse",
-                    "action": "Aim",
+                    "groups": "",
+                    "action": "GamepadAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -158,7 +158,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardMouse",
+                    "groups": "",
                     "action": "MouseAim",
                     "isComposite": false,
                     "isPartOfComposite": false

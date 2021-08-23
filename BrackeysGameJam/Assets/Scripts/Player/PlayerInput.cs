@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour
     {
         m_moveDir = m_playerControls.Player.Move.ReadValue<Vector2>();
 
-        m_aimDir = m_playerControls.Player.Aim.ReadValue<Vector2>();
+        //m_aimDir = m_playerControls.Player.Aim.ReadValue<Vector2>();
 
         m_mousePos = m_playerControls.Player.MouseAim.ReadValue<Vector2>();
     }

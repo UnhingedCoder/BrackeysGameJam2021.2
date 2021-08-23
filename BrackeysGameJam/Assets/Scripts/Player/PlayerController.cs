@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     #region VARIABLE_REG
@@ -18,9 +19,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 m_moveDirection;
 
-    private CharacterController m_controller;
+    private Vector2 m_moveInput;
+    private Vector2 m_gamepadAim;
+    private Vector2 m_mouseAim;
 
-    private PlayerInput m_pInput;
+    private CharacterController m_controller;
     #endregion
 
     #region UNITY_REG
@@ -30,7 +33,6 @@ public class PlayerController : MonoBehaviour
         m_cam = Camera.main;
 
         m_controller = this.GetComponent<CharacterController>();
-        m_pInput = this.GetComponent<PlayerInput>();
     }
     private void Update()
     {
@@ -39,6 +41,19 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region CLASS_REG
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        m_moveInput = context.ReadValue<Vector2>();
+    }
+    public void OnGamepadAim(InputAction.CallbackContext context)
+    {
+        m_gamepadAim = context.ReadValue<Vector2>();
+    }
+    public void OnMouseAim(InputAction.CallbackContext context)
+    {
+        m_mouseAim = context.ReadValue<Vector2>();
+    }
+
     private void Move()
     {
         if (!CanMove)
@@ -49,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         //Movement
         float yDir = m_moveDirection.y;
-        m_moveDirection = (this.transform.forward * m_pInput.moveDirection.y) + (this.transform.right * m_pInput.moveDirection.x);
+        m_moveDirection = (this.transform.forward * m_moveInput.y) + (this.transform.right * m_moveInput.x);
         m_moveDirection = m_moveDirection.normalized * m_moveSpeed;
         m_moveDirection.y = yDir;
 
@@ -58,7 +73,7 @@ public class PlayerController : MonoBehaviour
         //Rotation
         if (AimWithController)
         {
-            Vector3 playerDirection = Vector3.right * m_pInput.aimDirection.x + Vector3.forward * m_pInput.aimDirection.y;
+            Vector3 playerDirection = Vector3.right * m_gamepadAim.x + Vector3.forward * m_gamepadAim.y;
             if (playerDirection.sqrMagnitude > 0f)
             {
                 transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
@@ -66,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Ray cameraRay = m_cam.ScreenPointToRay(m_pInput.mousePos);
+            Ray cameraRay = m_cam.ScreenPointToRay(m_mouseAim);
             Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
             float rayLength;
 

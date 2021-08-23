@@ -39344,7 +39344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122856163856868308, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4122856163856868308, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39382,9 +39382,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4122856163856868309, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: AimWithController
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4122856163856868314, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211054751050254805, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
