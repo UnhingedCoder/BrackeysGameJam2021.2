@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8c625864cdcb794cbed8b4c80f8e87c
+guid: cb011b5651fbb0446a7cfea0188f816e
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: defaultMat
-    second: {fileID: 2100000, guid: 4f5fabb57a6033942926a30c3420b651, type: 2}
+      name: palette
+    second: {fileID: 2100000, guid: b1901c4618531b34db7cf32e7e933c43, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.025
+    globalScale: 0.00025
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
