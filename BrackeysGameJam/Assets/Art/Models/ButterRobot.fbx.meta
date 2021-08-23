@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: palette
-    second: {fileID: 2100000, guid: b1901c4618531b34db7cf32e7e933c43, type: 2}
+    second: {fileID: 2100000, guid: 3b0a5b60450a1dc4fbdace36049cd78c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.00025
+    globalScale: 0.025
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
