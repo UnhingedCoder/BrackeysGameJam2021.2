@@ -37,6 +37,6 @@ Material:
     - Line_Thickness: 0.975
     - Width: 0.9
     m_Colors:
-    - Grid_Color: {r: 0.0048526935, g: 0.0048526935, b: 0.0048526935, a: 0}
+    - Grid_Color: {r: 0.0015761374, g: 0.0015761374, b: 0.0015761374, a: 0}
     - Tiling: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
