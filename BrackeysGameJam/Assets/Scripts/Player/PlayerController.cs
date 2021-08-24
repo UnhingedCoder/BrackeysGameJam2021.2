@@ -7,12 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     #region VARIABLE_REG
+    [Header("INPUT")]
+
     [Header("MOVEMENT")]
     [SerializeField] private float m_moveSpeed;
     [SerializeField] private float m_turnSpeed = 0.1f;
 
     public bool CanMove = true;
-    public bool AimWithController = false;
+    private bool m_aimWithController = false;
 
     private Transform m_playerModel;
     private Camera m_cam;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_mouseAim;
 
     private CharacterController m_controller;
+    private PlayerInput m_pInput;
     #endregion
 
     #region UNITY_REG
@@ -33,7 +36,14 @@ public class PlayerController : MonoBehaviour
         m_cam = Camera.main;
 
         m_controller = this.GetComponent<CharacterController>();
+        m_pInput = this.GetComponent<PlayerInput>();
     }
+
+    private void Start()
+    {
+        SetControlScheme();
+    }
+
     private void Update()
     {
         Move();
@@ -45,13 +55,25 @@ public class PlayerController : MonoBehaviour
     {
         m_moveInput = context.ReadValue<Vector2>();
     }
+
     public void OnGamepadAim(InputAction.CallbackContext context)
     {
         m_gamepadAim = context.ReadValue<Vector2>();
     }
+
     public void OnMouseAim(InputAction.CallbackContext context)
     {
         m_mouseAim = context.ReadValue<Vector2>();
+    }
+
+    private void SetControlScheme()
+    {
+        if (m_pInput.currentControlScheme == "KeyboardMouse")
+            m_aimWithController = false;
+        else
+            m_aimWithController = true;
+
+        //CanMove = false;
     }
 
     private void Move()
@@ -71,7 +93,7 @@ public class PlayerController : MonoBehaviour
         m_controller.Move(m_moveDirection * Time.deltaTime);
 
         //Rotation
-        if (AimWithController)
+        if (m_aimWithController)
         {
             Vector3 playerDirection = Vector3.right * m_gamepadAim.x + Vector3.forward * m_gamepadAim.y;
             if (playerDirection.sqrMagnitude > 0f)

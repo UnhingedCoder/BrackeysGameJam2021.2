@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df565517592874c47901221b6f4e60d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputAction: {fileID: -944628639613478452, guid: e7504cbe8ae93b34da8caed10b7e96b6, type: 3}
   m_moveSpeed: 2
   m_turnSpeed: 0.1
   CanMove: 1
@@ -142,7 +143,7 @@ MonoBehaviour:
     m_ActionId: 2d72423a-49d5-4f84-8aa8-2e70df6f34bd
     m_ActionName: Player/MouseAim[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

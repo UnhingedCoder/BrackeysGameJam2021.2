@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Inputs/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Inputs/PlayerControlsB.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerControls : IInputActionCollection, IDisposable
+public class @PlayerControlsB : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerControls()
+    public @PlayerControlsB()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerControls"",
+    ""name"": ""PlayerControlsB"",
     ""maps"": [
         {
             ""name"": ""Player"",
@@ -268,8 +268,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MouseAim;
     public struct PlayerActions
     {
-        private @PlayerControls m_Wrapper;
-        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControlsB m_Wrapper;
+        public PlayerActions(@PlayerControlsB wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @GamepadAim => m_Wrapper.m_Player_GamepadAim;
         public InputAction @MouseAim => m_Wrapper.m_Player_MouseAim;
