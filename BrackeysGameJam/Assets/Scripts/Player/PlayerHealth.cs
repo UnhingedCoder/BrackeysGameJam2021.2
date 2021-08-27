@@ -6,13 +6,16 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int currentHP;
 
-    private int maxHP = 100; //remove from here and put in Gamemanager?
+    private int maxHP;
 
     PlayerController m_controller;
+
     public PlayerHealth(PlayerController controller)
     {
         m_controller = controller;
         currentHP = maxHP;
+
+        maxHP = m_controller.m_GameManager._GameConfig.MAX_HP;
     }
 
     public void OnPlayerHit(int damage)
@@ -22,13 +25,17 @@ public class PlayerHealth : MonoBehaviour
         if (currentHP <= 0)
         {
             Debug.LogError("DEAD");
-          //  GameManager.Instance.PlayerDead();
-        //  Events.PlayerDead
+            m_controller.PlayerDead();
         }
     }
 
     public void OnPlayerRegen(int hpRestored)
     {
 
+    }
+
+    public void ResetHP()
+    {
+        currentHP = maxHP;
     }
 }

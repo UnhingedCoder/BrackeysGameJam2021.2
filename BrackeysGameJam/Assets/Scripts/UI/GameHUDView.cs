@@ -6,7 +6,9 @@ using Core;
 
 public class GameHUDView : MonoBehaviour
 {
-    [SerializeField] private Text player1Score;
+    [SerializeField] GameManager gameManager;
+
+    [SerializeField] public  Text player1Score;
     [SerializeField] private Text player2Score;
     [SerializeField] private Text player3Score;
     [SerializeField] private Text player4Score;
@@ -24,4 +26,11 @@ public class GameHUDView : MonoBehaviour
 
 
     }
+
+    public void Refresh()
+    {
+        player1Score.text = gameManager.Player1Score.ToString();
+        player2Score.text = gameManager.Player2Score.ToString();
+    }
+ 
 }

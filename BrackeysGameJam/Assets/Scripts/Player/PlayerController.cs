@@ -40,13 +40,19 @@ public class PlayerController : MonoBehaviour
     private PlayerInput m_pInput;
     private PlayerHealth m_pHealth;
 
+    private GameManager m_gameManager;
+
     public Vector2 MouseAim { get => m_mouseAim; }
-  //  public PlayerHealth PHealth { get => m_pHealth; }
+    public GameManager m_GameManager { get => m_gameManager; }
+
+    //  public PlayerHealth PHealth { get => m_pHealth; }
     #endregion
 
     #region UNITY_REG
     private void Awake()
     {
+        m_gameManager = FindObjectOfType<GameManager>();
+
         m_playerModel = this.transform.GetChild(0);
         m_cam = Camera.main;
 
@@ -119,6 +125,17 @@ public class PlayerController : MonoBehaviour
     public void OnPlayerHit(int dmg)
     {
         m_pHealth.OnPlayerHit(dmg);
+    }
+
+    public void PlayerDead()
+    {
+        m_gameManager.PlayerDead(this);
+        ResetPlayer();
+    }
+
+    private void ResetPlayer()
+    {
+        m_pHealth.ResetHP();
     }
 
     private void SetControlScheme()
