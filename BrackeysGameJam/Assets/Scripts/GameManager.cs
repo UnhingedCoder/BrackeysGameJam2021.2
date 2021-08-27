@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour// Core.Singleton<GameManager>
     [SerializeField] GameConfig m_gameConfig;
     [SerializeField] ViewsManager m_viewsManager;
 
-    int player1Score;
-    int player2Score;
+    int player1Score = 0;
+    int player2Score = 0;
 
     public int Player1Score { get => player1Score;}
     public int Player2Score { get => player2Score;}

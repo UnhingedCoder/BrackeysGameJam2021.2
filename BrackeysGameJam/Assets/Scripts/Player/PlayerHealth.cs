@@ -13,9 +13,10 @@ public class PlayerHealth : MonoBehaviour
     public PlayerHealth(PlayerController controller)
     {
         m_controller = controller;
-        currentHP = maxHP;
 
         maxHP = m_controller.m_GameManager._GameConfig.MAX_HP;
+        currentHP = maxHP;
+
     }
 
     public void OnPlayerHit(int damage)
