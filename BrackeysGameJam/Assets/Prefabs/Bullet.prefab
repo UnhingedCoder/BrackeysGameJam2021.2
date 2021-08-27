@@ -64,6 +64,7 @@ MonoBehaviour:
   Speed: 1000
   Damage: 30
   Bounces: 3
+  burstFX: {fileID: 5404601815258856961, guid: f516209e47c68334eadc72e317ba7fc9, type: 3}
   controller: {fileID: 0}
 --- !u!54 &478446054
 Rigidbody:
