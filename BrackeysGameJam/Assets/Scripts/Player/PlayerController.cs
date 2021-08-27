@@ -13,6 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_moveSpeed;
     [SerializeField] private float m_turnSpeed = 0.1f;
 
+    [Header("???")]
+    [SerializeField] private GameObject m_bulletPrefab;
+    [SerializeField] private GameObject m_boomerangBulletPrefab;
+    [SerializeField] private GameObject m_bulletSpawnPoint;
+
+    [SerializeField] protected float MaxBulletSpawn; // remove from here and put in Gamemanager?
+    private int bulletCount = 0;
+    private GameObject boomerangObject;
+
+
     public bool CanMove = true;
     private bool m_aimWithController = false;
 
@@ -24,9 +34,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_moveInput;
     private Vector2 m_gamepadAim;
     private Vector2 m_mouseAim;
+    private Vector2 m_primaryFire;
 
     private CharacterController m_controller;
     private PlayerInput m_pInput;
+    private PlayerHealth m_pHealth;
+
+    public Vector2 MouseAim { get => m_mouseAim; }
+    public PlayerHealth PHealth { get => m_pHealth; }
     #endregion
 
     #region UNITY_REG
@@ -37,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
         m_controller = this.GetComponent<CharacterController>();
         m_pInput = this.GetComponent<PlayerInput>();
+        m_pHealth = new PlayerHealth(this);
     }
 
     private void Start()
@@ -64,6 +80,40 @@ public class PlayerController : MonoBehaviour
     public void OnMouseAim(InputAction.CallbackContext context)
     {
         m_mouseAim = context.ReadValue<Vector2>();
+    }
+
+    public void OnFire1(InputAction.CallbackContext context)
+    {
+        if (context.performed && gameObject.scene.IsValid())
+        {
+            if (bulletCount < MaxBulletSpawn)
+            {
+                bulletCount++;
+                var bullet = Instantiate(m_bulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
+                bullet.GetComponent<BulletProjectile>().controller = this;
+            }
+        }
+    }
+
+    public void OnFire2(InputAction.CallbackContext context)
+    {
+        if (context.performed && gameObject.scene.IsValid())
+        {
+            if (boomerangObject == null)
+            {
+                boomerangObject = Instantiate(m_boomerangBulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
+                boomerangObject.GetComponent<BoomerangProjectile>().controller = this;
+            }
+            else
+            {
+                boomerangObject.GetComponent<BoomerangProjectile>().ReturnToPlayer();
+            }
+        }
+    }
+
+    public void OnBulletDestroyed()
+    {
+        bulletCount--;
     }
 
     private void SetControlScheme()

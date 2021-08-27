@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerControlsB",
     "maps": [
         {
             "name": "Player",
@@ -26,6 +26,22 @@
                     "type": "PassThrough",
                     "id": "2d72423a-49d5-4f84-8aa8-2e70df6f34bd",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire1",
+                    "type": "Button",
+                    "id": "bfca2e17-2195-417a-990c-f570a64471df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire2",
+                    "type": "Button",
+                    "id": "aa7f3e52-4eec-474d-a7d3-333113044dcf",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -147,7 +163,7 @@
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "GamepadAim",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -158,8 +174,30 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "MouseAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cb1c73b-47e3-4e17-8822-90d60c8851b3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Fire1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce944806-8942-436e-bb7a-4b0ada40d97b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

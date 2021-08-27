@@ -41,6 +41,22 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire1"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfca2e17-2195-417a-990c-f570a64471df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire2"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa7f3e52-4eec-474d-a7d3-333113044dcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -160,7 +176,7 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone"",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""GamepadAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -171,8 +187,30 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""MouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cb1c73b-47e3-4e17-8822-90d60c8851b3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce944806-8942-436e-bb7a-4b0ada40d97b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -214,6 +252,8 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_GamepadAim = m_Player.FindAction("GamepadAim", throwIfNotFound: true);
         m_Player_MouseAim = m_Player.FindAction("MouseAim", throwIfNotFound: true);
+        m_Player_Fire1 = m_Player.FindAction("Fire1", throwIfNotFound: true);
+        m_Player_Fire2 = m_Player.FindAction("Fire2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +306,8 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_GamepadAim;
     private readonly InputAction m_Player_MouseAim;
+    private readonly InputAction m_Player_Fire1;
+    private readonly InputAction m_Player_Fire2;
     public struct PlayerActions
     {
         private @PlayerControlsB m_Wrapper;
@@ -273,6 +315,8 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @GamepadAim => m_Wrapper.m_Player_GamepadAim;
         public InputAction @MouseAim => m_Wrapper.m_Player_MouseAim;
+        public InputAction @Fire1 => m_Wrapper.m_Player_Fire1;
+        public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +335,12 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
                 @MouseAim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
                 @MouseAim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
                 @MouseAim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
+                @Fire1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire1;
+                @Fire1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire1;
+                @Fire1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire1;
+                @Fire2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
+                @Fire2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
+                @Fire2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -304,6 +354,12 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
                 @MouseAim.started += instance.OnMouseAim;
                 @MouseAim.performed += instance.OnMouseAim;
                 @MouseAim.canceled += instance.OnMouseAim;
+                @Fire1.started += instance.OnFire1;
+                @Fire1.performed += instance.OnFire1;
+                @Fire1.canceled += instance.OnFire1;
+                @Fire2.started += instance.OnFire2;
+                @Fire2.performed += instance.OnFire2;
+                @Fire2.canceled += instance.OnFire2;
             }
         }
     }
@@ -331,5 +387,7 @@ public class @PlayerControlsB : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnGamepadAim(InputAction.CallbackContext context);
         void OnMouseAim(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerControlsA",
     "maps": [
         {
             "name": "Player",
@@ -26,6 +26,22 @@
                     "type": "PassThrough",
                     "id": "2d72423a-49d5-4f84-8aa8-2e70df6f34bd",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire1",
+                    "type": "Button",
+                    "id": "e7121e07-77dd-48ca-956a-9fc2c2ed3246",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire2",
+                    "type": "Button",
+                    "id": "69651fd9-73b5-480a-9cf4-4f30ad02e773",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -160,6 +176,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22a45c27-4d13-40b2-bd76-3124e95ed225",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3f157cd-dce9-49c6-b06f-072194e4d34c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

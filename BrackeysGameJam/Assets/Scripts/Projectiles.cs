@@ -8,24 +8,45 @@ public class Projectiles : MonoBehaviour
     [SerializeField] protected int Damage;
     [SerializeField] protected int Bounces;
 
-    Rigidbody m_rigidbody;
+    protected Rigidbody m_rigidbody;
+
+    protected int bounceCount = 0;
+
+    public PlayerController controller;
 
     private void Start()
     {
         m_rigidbody = this.gameObject.GetComponent<Rigidbody>();
 
-       
+        FireBullet();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+    }
+
+    public virtual void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Walls")
         {
-            Debug.LogError("SPACE");
-            m_rigidbody.AddForce(transform.forward * Speed);
+            bounceCount++;
+            if (bounceCount >= Bounces)
+            {
+                controller.OnBulletDestroyed();
+                Destroy(this.gameObject);
+            }
         }
 
-       // this.transform.Translate(Vector3.one.normalized * Speed * Time.deltaTime);
+        if (collision.gameObject.tag.Contains("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().PHealth.OnPlayerHit(Damage);
+        }
+    }
+
+    public void FireBullet()
+    {
+        m_rigidbody.velocity = transform.forward * Speed * Time.deltaTime;
     }
 
 }
