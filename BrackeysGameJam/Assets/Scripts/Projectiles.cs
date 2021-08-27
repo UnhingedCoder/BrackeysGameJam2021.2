@@ -40,7 +40,8 @@ public class Projectiles : MonoBehaviour
 
         if (collision.gameObject.tag.Contains("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().PHealth.OnPlayerHit(Damage);
+            collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
+
         }
     }
 

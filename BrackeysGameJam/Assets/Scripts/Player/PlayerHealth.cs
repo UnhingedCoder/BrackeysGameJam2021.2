@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHP <= 0)
         {
             Debug.LogError("DEAD");
+          //  GameManager.Instance.PlayerDead();
+        //  Events.PlayerDead
         }
     }
 

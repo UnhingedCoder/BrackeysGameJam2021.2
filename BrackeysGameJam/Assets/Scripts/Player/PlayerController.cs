@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth m_pHealth;
 
     public Vector2 MouseAim { get => m_mouseAim; }
-    public PlayerHealth PHealth { get => m_pHealth; }
+  //  public PlayerHealth PHealth { get => m_pHealth; }
     #endregion
 
     #region UNITY_REG
@@ -114,6 +114,11 @@ public class PlayerController : MonoBehaviour
     public void OnBulletDestroyed()
     {
         bulletCount--;
+    }
+
+    public void OnPlayerHit(int dmg)
+    {
+        m_pHealth.OnPlayerHit(dmg);
     }
 
     private void SetControlScheme()
