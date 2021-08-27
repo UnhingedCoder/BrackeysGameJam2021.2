@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Walls
   - Bullet
+  - Player_01
+  - Player_02
+  - Player_03
+  - Player_04
   layers:
   - Default
   - TransparentFX

@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
         m_moveDirection = (this.transform.forward * m_moveInput.y) + (this.transform.right * m_moveInput.x);
         m_moveDirection = m_moveDirection.normalized * m_moveSpeed;
         m_moveDirection.y = yDir;
+        m_moveDirection.y += (Physics.gravity.y * Time.deltaTime);
 
         m_controller.Move(m_moveDirection * Time.deltaTime);
 
