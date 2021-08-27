@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController m_controller;
     private PlayerInput m_pInput;
     private PlayerHealth m_pHealth;
+    [SerializeField] private Animator m_anim;
 
     public Vector2 MouseAim { get => m_mouseAim; }
   //  public PlayerHealth PHealth { get => m_pHealth; }
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour
     public void OnPlayerHit(int dmg)
     {
         m_pHealth.OnPlayerHit(dmg);
+        m_anim.SetTrigger("Hit");
     }
 
     private void SetControlScheme()
@@ -170,6 +172,11 @@ public class PlayerController : MonoBehaviour
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             }
         }
+    }
+
+    private void UpdateMoveAnimation()
+    {
+        m_anim.SetFloat("Move", m_moveInput.sqrMagnitude);
     }
     #endregion
 }
