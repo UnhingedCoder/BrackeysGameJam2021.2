@@ -8,6 +8,8 @@ public class Projectiles : MonoBehaviour
     [SerializeField] protected int Damage;
     [SerializeField] protected int Bounces;
 
+    public GameObject burstFX;
+
     protected Rigidbody m_rigidbody;
 
     protected int bounceCount = 0;
@@ -33,6 +35,7 @@ public class Projectiles : MonoBehaviour
             bounceCount++;
             if (bounceCount >= Bounces)
             {
+                Instantiate(burstFX, this.transform.position, Quaternion.identity);
                 controller.OnBulletDestroyed();
                 Destroy(this.gameObject);
             }
@@ -40,6 +43,7 @@ public class Projectiles : MonoBehaviour
 
         if (collision.gameObject.tag.Contains("Player"))
         {
+            Instantiate(burstFX, this.transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
 
         }
