@@ -30,23 +30,29 @@ public class Projectiles : MonoBehaviour
 
     public virtual void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Walls")
+        Instantiate(burstFX, this.transform.position, Quaternion.identity);
+
+        if (collision.gameObject.tag == "Walls")
         {
             bounceCount++;
             if (bounceCount >= Bounces)
             {
-                Instantiate(burstFX, this.transform.position, Quaternion.identity);
-                controller.OnBulletDestroyed();
-                Destroy(this.gameObject);
+                DestroyProjectile();
             }
         }
 
         if (collision.gameObject.tag.Contains("Player"))
         {
-            Instantiate(burstFX, this.transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
-
+            DestroyProjectile();
         }
+    }
+
+    public void DestroyProjectile()
+    {
+        // Instantiate(burstFX, this.transform.position, Quaternion.identity);
+        controller.OnBulletDestroyed();
+        Destroy(this.gameObject);
     }
 
     public void FireBullet()
