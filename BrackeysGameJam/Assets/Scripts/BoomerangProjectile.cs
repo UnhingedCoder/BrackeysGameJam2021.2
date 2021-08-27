@@ -35,7 +35,7 @@ public class BoomerangProjectile : Projectiles
 
         if (collision.gameObject.tag != controller.gameObject.tag)
         {
-            collision.gameObject.GetComponent<PlayerController>().PHealth.OnPlayerHit(Damage);
+            collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
         }
     }
 
