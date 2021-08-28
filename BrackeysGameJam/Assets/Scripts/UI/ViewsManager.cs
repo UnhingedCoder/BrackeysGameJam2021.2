@@ -84,6 +84,13 @@ public class ViewsManager : MonoBehaviour
 
     public void EnableGameHUDView()
     {
+        StartCoroutine(CoEnableGameHUDView());
+    }
+
+    private IEnumerator CoEnableGameHUDView()
+    {
+        yield return new WaitForSeconds(0.3f);
+
         EnableView(GameState.InGame);
     }
 
