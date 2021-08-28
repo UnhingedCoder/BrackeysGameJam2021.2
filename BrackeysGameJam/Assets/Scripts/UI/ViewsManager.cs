@@ -7,7 +7,7 @@ public enum GameState
     MainMenu,
     PlayerSelection,
     InGame,
-    Paused
+    GameOver
 }
 
 public class ViewsManager : MonoBehaviour
@@ -16,7 +16,9 @@ public class ViewsManager : MonoBehaviour
     [SerializeField] private GameObject m_mainMenu;
     [SerializeField] private GameObject m_playerSelect;
     [SerializeField] private GameHUDView m_gameHUD;
+    [SerializeField] private GameObject m_gameOver;
 
+    public GameState currentGameState;
     public GameHUDView GameHUD { get => m_gameHUD; }
     #endregion
 
@@ -30,7 +32,9 @@ public class ViewsManager : MonoBehaviour
     #region CLASS_REG
     private void EnableView(GameState gameState)
     {
-        switch (gameState)
+        currentGameState = gameState;
+
+        switch (currentGameState)
         {
             default:
             case GameState.MainMenu:
@@ -38,6 +42,7 @@ public class ViewsManager : MonoBehaviour
                     m_mainMenu.SetActive(true);
                     m_playerSelect.SetActive(false);
                     m_gameHUD.gameObject.SetActive(false);
+                    m_gameOver.SetActive(false);
                 }
                 break;
             case GameState.PlayerSelection:
@@ -45,6 +50,7 @@ public class ViewsManager : MonoBehaviour
                     m_mainMenu.SetActive(false);
                     m_playerSelect.SetActive(true);
                     m_gameHUD.gameObject.SetActive(false);
+                    m_gameOver.SetActive(false);
                 }
                 break;
             case GameState.InGame:
@@ -52,6 +58,15 @@ public class ViewsManager : MonoBehaviour
                     m_mainMenu.SetActive(false);
                     m_playerSelect.SetActive(false);
                     m_gameHUD.gameObject.SetActive(true);
+                    m_gameOver.SetActive(false);
+                }
+                break;
+            case GameState.GameOver:
+                {
+                    m_mainMenu.SetActive(false);
+                    m_playerSelect.SetActive(false);
+                    m_gameHUD.gameObject.SetActive(false);
+                    m_gameOver.SetActive(true);
                 }
                 break;
         }
@@ -61,13 +76,21 @@ public class ViewsManager : MonoBehaviour
     {
         EnableView(GameState.MainMenu);
     }
+
     public void EnablePlayerSelectView()
     {
         EnableView(GameState.PlayerSelection);
     }
+
     public void EnableGameHUDView()
     {
         EnableView(GameState.InGame);
+    }
+
+    public void EnableGameOverView(string winner)
+    {
+        EnableView(GameState.GameOver);
+        m_gameOver.GetComponent<GameOverView>().winnerText.text = winner;
     }
     #endregion 
 }

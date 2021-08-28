@@ -34,6 +34,7 @@ public class MainMenuView : MonoBehaviour
     public void OnExitPressed()
     {
         Debug.Log("Exit");
+        Application.Quit();
     }
     #endregion 
 }

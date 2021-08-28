@@ -192,11 +192,33 @@
                 },
                 {
                     "name": "",
+                    "id": "fdf1a61f-281e-4f74-88e6-c1ea99056bed",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Fire1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ce944806-8942-436e-bb7a-4b0ada40d97b",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "875b97d7-8704-46c4-8368-2b87d6fbd41a",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Fire2",
                     "isComposite": false,
                     "isPartOfComposite": false

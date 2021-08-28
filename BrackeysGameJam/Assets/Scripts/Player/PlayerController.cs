@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
         m_controller = this.GetComponent<CharacterController>();
         m_pInput = this.GetComponent<PlayerInput>();
         m_pHealth = new PlayerHealth(this);
+
+        m_gameManager.Event_Winner.AddListener(ShowEndGameAnimation);
     }
 
     private void Start()
@@ -93,6 +95,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && gameObject.scene.IsValid())
         {
+            if (!m_gameManager.CanGameStart())
+                return;
+
             if (bulletCount < MaxBulletSpawn)
             {
                 bulletCount++;
@@ -106,6 +111,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && gameObject.scene.IsValid())
         {
+            if (!m_gameManager.CanGameStart())
+                return;
+
             if (boomerangObject == null)
             {
                 boomerangObject = Instantiate(m_boomerangBulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
@@ -157,6 +165,12 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (!m_gameManager.CanGameStart())
+        {
+            m_controller.Move(Vector3.zero);
+            return;
+        }
+
         if (!CanMove)
         {
             m_controller.Move(Vector3.zero);
@@ -199,6 +213,18 @@ public class PlayerController : MonoBehaviour
     private void UpdateMoveAnimation()
     {
         m_anim.SetFloat("Move", m_moveInput.sqrMagnitude);
+    }
+
+    private void ShowEndGameAnimation(string winnerTag)
+    {
+        if (this.gameObject.CompareTag(winnerTag))
+        {
+            m_anim.SetTrigger("Win");
+        }
+        else
+        {
+            m_anim.SetTrigger("Lose");
+        }
     }
     #endregion
 }
