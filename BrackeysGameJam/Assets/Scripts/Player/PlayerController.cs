@@ -204,47 +204,44 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+
+        //Rotation 
+        Vector3 playerDirection = Vector3.zero; 
+        if (m_aimWithController)
+        {
+            playerDirection = Vector3.right * m_gamepadAim.x + Vector3.forward * m_gamepadAim.y;
+            if (playerDirection.sqrMagnitude > 0f)
+            {
+                transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+            }
+        }
+        else
+        {
+            Ray cameraRay = m_cam.ScreenPointToRay(m_mouseAim);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayLength;
+
+            if (groundPlane.Raycast(cameraRay, out rayLength))
+            {
+                Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                playerDirection = new Vector3(pointToLook.x, transform.position.y, pointToLook.z);
+                transform.LookAt(playerDirection);
+            }
+        }
+
         //Movement
         float yDir = m_moveDirection.y;
-        //m_moveDirection = (this.transform.forward * m_moveInput.y) + (this.transform.right * m_moveInput.x);
-        m_moveDirection = m_moveInput.sqrMagnitude * this.transform.forward * m_moveSpeed;
+        m_moveDirection = (Vector3.forward * m_moveInput.y) + (Vector3.right * m_moveInput.x);
+        m_moveDirection = m_moveDirection.normalized * m_moveSpeed;
         m_moveDirection.y = yDir;
         m_moveDirection.y += (Physics.gravity.y * Time.deltaTime);
 
         m_controller.Move(m_moveDirection * Time.deltaTime);
-
-        Vector3 playerDirection = Vector3.right * m_moveInput.x + Vector3.forward * m_moveInput.y;
-        if (playerDirection.sqrMagnitude > 0f)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(playerDirection, Vector3.up), m_turnSpeed);
-        }
-        ////Rotation
-        //if (m_aimWithController)
-        //{
-        //    Vector3 playerDirection = Vector3.right * m_gamepadAim.x + Vector3.forward * m_gamepadAim.y;
-        //    if (playerDirection.sqrMagnitude > 0f)
-        //    {
-        //        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-        //    }
-        //}
-        //else
-        //{
-        //    Ray cameraRay = m_cam.ScreenPointToRay(m_mouseAim);
-        //    Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        //    float rayLength;
-
-        //    if (groundPlane.Raycast(cameraRay, out rayLength))
-        //    {
-        //        Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-
-        //        transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-        //    }
-        //}
     }
 
     private void UpdateMoveAnimation()
     {
-        m_anim.SetFloat("Move", m_moveInput.sqrMagnitude);
+        m_anim.SetFloat("Move", m_moveInput.magnitude);
     }
 
     private void ShowEndGameAnimation(string winnerTag)
