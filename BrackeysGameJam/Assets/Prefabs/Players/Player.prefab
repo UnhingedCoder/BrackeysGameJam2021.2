@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_healthBar: {fileID: 1948399190}
-  m_pHealth: {fileID: 0}
+  m_pController: {fileID: 0}
 --- !u!1 &1568749081
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df565517592874c47901221b6f4e60d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 2
+  m_moveSpeed: 4
   m_turnSpeed: 0.1
   m_bulletPrefab: {fileID: 3185996052414140142, guid: 075cfcbbbf9bb5b4cae956dfb17c3233, type: 3}
   m_boomerangBulletPrefab: {fileID: 3185996052414140142, guid: b259b18bf68d43a4484d5e8abd0ff723, type: 3}
