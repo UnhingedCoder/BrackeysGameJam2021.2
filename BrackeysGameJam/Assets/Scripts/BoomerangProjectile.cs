@@ -44,6 +44,7 @@ public class BoomerangProjectile : Projectiles
         if (collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != controller.gameObject.tag)
         {
             collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
+            DestroyProjectile();
         }
 
         //if (collision.gameObject.tag.Contains("Shield"))
