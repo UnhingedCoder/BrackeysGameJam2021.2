@@ -15,9 +15,12 @@ public class PlayerHealth : MonoBehaviour
         m_controller = controller;
 
         maxHP = m_controller.m_GameManager._GameConfig.MAX_HP;
-        currentHP = maxHP;
+        currentHP = MaxHP;
 
     }
+
+    public int CurrentHP { get => currentHP; }
+    public int MaxHP { get => maxHP; }
 
     public void OnPlayerHit(int damage)
     {
@@ -37,6 +40,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void ResetHP()
     {
-        currentHP = maxHP;
+        currentHP = MaxHP;
     }
 }

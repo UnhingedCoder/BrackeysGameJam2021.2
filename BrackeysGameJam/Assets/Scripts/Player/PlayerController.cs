@@ -129,6 +129,11 @@ public class PlayerController : MonoBehaviour
         m_anim.SetTrigger("Hit");
     }
 
+    public float CurrentHealthPercentage()
+    {
+        return (float)m_pHealth.CurrentHP / (float)m_pHealth.MaxHP;
+    }
+
     public void PlayerDead()
     {
         m_gameManager.PlayerDead(this);
