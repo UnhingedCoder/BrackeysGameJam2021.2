@@ -13,11 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_moveSpeed;
     [SerializeField] private float m_turnSpeed = 0.1f;
 
-    [Header("???")]
+    [Header("PROJECTILES")]
     [SerializeField] private GameObject m_bulletPrefab;
     [SerializeField] private GameObject m_boomerangBulletPrefab;
     [SerializeField] private GameObject m_bulletSpawnPoint;
     [SerializeField] private GameObject shieldObject;
+
+    [Header("INVULNERABILTY")]
+    [SerializeField] private float m_MaxInvulnerabiltyTime;
+    [SerializeField] private float m_invulnerableFXEmissionRate;
+    [SerializeField] private ParticleSystem m_invulnerableFX;
 
     [SerializeField] protected float MaxBulletSpawn; // remove from here and put in Gamemanager?
     private int bulletCount = 0;
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     public bool CanMove = true;
     private bool m_aimWithController = false;
+    private bool m_isInvulnerable = false;
 
     private Transform m_playerModel;
     private Camera m_cam;
@@ -48,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public GameManager m_GameManager { get => m_gameManager; }
 
     //  public PlayerHealth PHealth { get => m_pHealth; }
+
+    private float m_invulnerabilityTimer = 0f;
     #endregion
 
     #region UNITY_REG
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        HandleInvulnerability();
     }
     #endregion
 
@@ -131,6 +140,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && gameObject.scene.IsValid())
         {
+            if (!m_gameManager.CanGameStart())
+                return;
+
             if (isShieldCharged)
             {
                 StartCoroutine(ShieldOn());
@@ -160,8 +172,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnPlayerHit(int dmg)
     {
+        if (m_isInvulnerable)
+            return;
+
         m_pHealth.OnPlayerHit(dmg);
         m_anim.SetTrigger("Hit");
+        m_invulnerabilityTimer = 0f;
+        m_isInvulnerable = true;
     }
 
     public float CurrentHealthPercentage()
@@ -241,7 +258,11 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMoveAnimation()
     {
-        m_anim.SetFloat("Move", m_moveInput.magnitude);
+        float magnitude = 0;
+        if(m_moveInput.x != 0 || m_moveInput.y != 0)
+            magnitude = 1;
+
+        m_anim.SetFloat("Move", magnitude);
     }
 
     private void ShowEndGameAnimation(string winnerTag)
@@ -253,6 +274,29 @@ public class PlayerController : MonoBehaviour
         else
         {
             m_anim.SetTrigger("Lose");
+        }
+    }
+
+    private void HandleInvulnerableFX(float rate)
+    {
+        var emission = m_invulnerableFX.emission;
+        emission.rateOverTime = rate;
+    }
+
+    private void HandleInvulnerability()
+    {
+        if (m_isInvulnerable)
+        {
+            if (m_invulnerabilityTimer <= m_MaxInvulnerabiltyTime)
+            {
+                HandleInvulnerableFX(m_invulnerableFXEmissionRate);
+                m_invulnerabilityTimer += Time.deltaTime;
+            }
+            else
+            {
+                HandleInvulnerableFX(0f);
+                m_isInvulnerable = false;
+            }
         }
     }
     #endregion
