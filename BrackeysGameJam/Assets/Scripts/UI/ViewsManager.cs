@@ -23,9 +23,15 @@ public class ViewsManager : MonoBehaviour
 
     public GameState currentGameState;
     public GameHUDView GameHUD { get => m_gameHUD; }
+
+    private AudioManager m_audioManager;
     #endregion
 
     #region UNITY_REG
+    private void Awake()
+    {
+        m_audioManager = FindObjectOfType<AudioManager>();
+    }
     private void Start()
     {
         EnableMainMenuView();
@@ -78,15 +84,18 @@ public class ViewsManager : MonoBehaviour
     public void EnableMainMenuView()
     {
         EnableView(GameState.MainMenu);
+        m_audioManager.ChangeTrack(GameState.MainMenu);
     }
 
     public void EnablePlayerSelectView()
     {
         EnableView(GameState.PlayerSelection);
+        m_audioManager.ChangeTrack(GameState.PlayerSelection);
     }
 
     public void EnableGameHUDView()
     {
+        m_audioManager.ChangeTrack(GameState.InGame);
         StartCoroutine(CoEnableGameHUDView());
     }
 
@@ -100,6 +109,7 @@ public class ViewsManager : MonoBehaviour
     public void EnableGameOverView(string winner)
     {
         EnableView(GameState.GameOver);
+        m_audioManager.ChangeTrack(GameState.GameOver);
         if (winner.Contains("1"))
             m_gameOver.GetComponent<GameOverView>().winnerText.color = m_player01Color;
         else

@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput m_pInput;
     private PlayerHealth m_pHealth;
     [SerializeField] private Animator m_anim;
+    private AudioSource m_audioSource;
 
     private GameManager m_gameManager;
 
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         m_controller = this.GetComponent<CharacterController>();
         m_pInput = this.GetComponent<PlayerInput>();
         m_pHealth = new PlayerHealth(this);
+        m_audioSource = this.GetComponent<AudioSource>();
 
         m_gameManager.Event_Winner.AddListener(ShowEndGameAnimation);
     }
@@ -181,6 +183,7 @@ public class PlayerController : MonoBehaviour
 
         CanMove = false;
 
+        m_audioSource.Play();
         m_pHealth.OnPlayerHit(dmg);
         m_anim.SetTrigger("Hit");
         m_invulnerabilityTimer = 0f;

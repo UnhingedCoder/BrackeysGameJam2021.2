@@ -34,13 +34,13 @@ Material:
     m_Ints: []
     m_Floats:
     - Gradient_Noise_Scale: 1
-    - Layer1_Speed: 0.25
-    - Layer2_Speed: 0.5
+    - Layer1_Speed: 0.1
+    - Layer2_Speed: 0.25
     - Outline1_Size: 0.15
     - Outline2_Size: 0.04
     - Voronoi_Angle: 116.99
     - Voronoi_Density: 0.5
-    - Wave_Speed: 0.05
+    - Wave_Speed: 0.01
     m_Colors:
     - Layer1_Color: {r: 0.5849056, g: 0.02984002, b: 0, a: 0}
     - Layer2_Color: {r: 1, g: 0.16651759, b: 0, a: 0}
