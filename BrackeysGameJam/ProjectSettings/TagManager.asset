@@ -10,6 +10,10 @@ TagManager:
   - Player_02
   - Player_03
   - Player_04
+  - Bullet_01
+  - Bullet_02
+  - Shield_01
+  - Shield_02
   layers:
   - Default
   - TransparentFX

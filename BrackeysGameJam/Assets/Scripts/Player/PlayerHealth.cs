@@ -25,10 +25,8 @@ public class PlayerHealth : MonoBehaviour
     public void OnPlayerHit(int damage)
     {
         currentHP -= damage;
-        Debug.LogError(currentHP);
         if (currentHP <= 0)
         {
-            Debug.LogError("DEAD");
             m_controller.PlayerDead();
         }
     }

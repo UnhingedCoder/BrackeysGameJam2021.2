@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b1901c4618531b34db7cf32e7e933c43, type: 2}
+    - target: {fileID: 3568508826679856559, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: m_TagString
+      value: Shield_02
+      objectReference: {fileID: 0}
     - target: {fileID: 4122856163856868308, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -163,6 +167,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7714001049611622765, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dde17316aacfbc14da578a16da7b1e66, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
 --- !u!114 &1109520966960056895 stripped

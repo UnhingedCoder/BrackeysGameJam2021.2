@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 MouseAim { get => m_mouseAim; }
     public GameManager m_GameManager { get => m_gameManager; }
+    public GameObject ShieldObject { get => shieldObject; }
+    public GameObject BulletSpawnPoint { get => m_bulletSpawnPoint; }
 
     //  public PlayerHealth PHealth { get => m_pHealth; }
     #endregion
@@ -103,7 +105,7 @@ public class PlayerController : MonoBehaviour
             {
                 bulletCount++;
                 var bullet = Instantiate(m_bulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
-                bullet.GetComponent<BulletProjectile>().controller = this;
+                bullet.GetComponent<BulletProjectile>().AssignController(this);
             }
         }
     }
@@ -118,7 +120,7 @@ public class PlayerController : MonoBehaviour
             if (boomerangObject == null)
             {
                 boomerangObject = Instantiate(m_boomerangBulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
-                boomerangObject.GetComponent<BoomerangProjectile>().controller = this;
+                boomerangObject.GetComponent<BoomerangProjectile>().AssignController(this);
             }
             else
             {

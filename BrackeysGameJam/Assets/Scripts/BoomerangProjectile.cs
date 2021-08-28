@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 public class BoomerangProjectile : Projectiles
 {
@@ -15,18 +16,25 @@ public class BoomerangProjectile : Projectiles
 
 
             float step = 20 * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, controller.gameObject.transform.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(controller.transform.position.x, controller.BulletSpawnPoint.transform.position.y,controller.transform.position.z), step);
 
-            
-            if (Vector3.Distance(transform.position, controller.gameObject.transform.position) < 0.001f)
+            Debug.LogError(Vector3.Distance(transform.position, controller.gameObject.transform.position));
+            if (Vector3.Distance(transform.position, controller.gameObject.transform.position) < 0.5f)
             {
                 Destroy(this.gameObject);
             }
         }
     }
 
+    public override void AssignController(PlayerController controller_)
+    {
+        controller = controller_;
+        Physics.IgnoreCollision( controller_.ShieldObject.GetComponent<Collider>(), this.GetComponent<Collider>(),true);
+    }
+
     public override void OnCollisionEnter(Collision collision)
     {
+        Debug.LogError("Collision : " + collision.gameObject.name);
         if (collision.gameObject.tag == "Walls")
         {
             m_rigidbody.velocity = Vector3.zero;
@@ -37,6 +45,11 @@ public class BoomerangProjectile : Projectiles
         {
             collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
         }
+
+        //if (collision.gameObject.tag.Contains("Shield"))
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 
     public void ReturnToPlayer()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectiles : MonoBehaviour
+public abstract class Projectiles : MonoBehaviour
 {
     [SerializeField] protected float Speed;
     [SerializeField] protected int Damage;
@@ -14,7 +14,12 @@ public class Projectiles : MonoBehaviour
 
     protected int bounceCount = 0;
 
-    public PlayerController controller;
+    protected PlayerController controller;
+
+    private void Awake()
+    {
+ 
+    }
 
     private void Start()
     {
@@ -29,6 +34,8 @@ public class Projectiles : MonoBehaviour
             DestroyProjectile();
         }
     }
+
+    public abstract void AssignController(PlayerController controller_);
 
     public virtual void OnCollisionEnter(Collision collision)
     {

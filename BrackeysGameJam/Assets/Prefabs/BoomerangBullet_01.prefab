@@ -5038,7 +5038,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6462264, g: 1, b: 0.95904505, a: 1}
+      maxColor: {r: 1, g: 0.6474485, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9644,8 +9644,8 @@ GameObject:
   - component: {fileID: -2378892014115328189}
   - component: {fileID: 478446054}
   m_Layer: 6
-  m_Name: BoomerangBullet
-  m_TagString: Bullet
+  m_Name: BoomerangBullet_01
+  m_TagString: Bullet_01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
