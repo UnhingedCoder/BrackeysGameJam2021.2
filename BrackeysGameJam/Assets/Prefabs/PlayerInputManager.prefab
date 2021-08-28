@@ -102,8 +102,6 @@ MonoBehaviour:
   m_characters:
   - {fileID: 5145512095171844425, guid: d30fe62869fdd8a4f84771a5618d0690, type: 3}
   - {fileID: 1109520966960056880, guid: bedc4e8e6f938c649bdcca4e3a95acae, type: 3}
-  - {fileID: 826860790938741108, guid: 493368ee6a7b88b4ab9c1174c7dfa716, type: 3}
-  - {fileID: 4828707265954114061, guid: 46bd1e2ac283d1147a0afedf71fbe724, type: 3}
   Event_OnMaxPlayerLimit:
     m_PersistentCalls:
       m_Calls:
