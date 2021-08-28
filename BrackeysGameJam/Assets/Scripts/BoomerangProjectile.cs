@@ -33,7 +33,7 @@ public class BoomerangProjectile : Projectiles
             m_returnable = true;
         }
 
-        if (collision.gameObject.tag != controller.gameObject.tag)
+        if (collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != controller.gameObject.tag)
         {
             collision.gameObject.GetComponent<PlayerController>().OnPlayerHit(Damage);
         }

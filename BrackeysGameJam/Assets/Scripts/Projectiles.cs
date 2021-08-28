@@ -25,7 +25,9 @@ public class Projectiles : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if(Vector3.Distance(this.transform.position, controller.transform.position) > 30){
+            DestroyProjectile();
+        }
     }
 
     public virtual void OnCollisionEnter(Collision collision)

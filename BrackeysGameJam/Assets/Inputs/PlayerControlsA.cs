@@ -57,6 +57,14 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""45b700a1-88ce-485e-b27f-876e7ad2b6ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -235,6 +243,28 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
                     ""action"": ""Fire2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe79210e-beb9-4833-8c36-3bf645c66549"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""616585e6-3a2f-48ae-9ecb-d3302241f822"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -276,6 +306,7 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
         m_Player_MouseAim = m_Player.FindAction("MouseAim", throwIfNotFound: true);
         m_Player_Fire1 = m_Player.FindAction("Fire1", throwIfNotFound: true);
         m_Player_Fire2 = m_Player.FindAction("Fire2", throwIfNotFound: true);
+        m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -330,6 +361,7 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MouseAim;
     private readonly InputAction m_Player_Fire1;
     private readonly InputAction m_Player_Fire2;
+    private readonly InputAction m_Player_Shield;
     public struct PlayerActions
     {
         private @PlayerControlsA m_Wrapper;
@@ -339,6 +371,7 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
         public InputAction @MouseAim => m_Wrapper.m_Player_MouseAim;
         public InputAction @Fire1 => m_Wrapper.m_Player_Fire1;
         public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
+        public InputAction @Shield => m_Wrapper.m_Player_Shield;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +396,9 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
                 @Fire2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
                 @Fire2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
                 @Fire2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire2;
+                @Shield.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,6 +418,9 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
                 @Fire2.started += instance.OnFire2;
                 @Fire2.performed += instance.OnFire2;
                 @Fire2.canceled += instance.OnFire2;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
             }
         }
     }
@@ -411,5 +450,6 @@ public class @PlayerControlsA : IInputActionCollection, IDisposable
         void OnMouseAim(InputAction.CallbackContext context);
         void OnFire1(InputAction.CallbackContext context);
         void OnFire2(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
     }
 }

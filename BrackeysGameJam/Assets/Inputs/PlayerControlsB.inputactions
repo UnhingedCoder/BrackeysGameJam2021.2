@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Shield",
+                    "type": "Button",
+                    "id": "61c697f8-8340-41c2-99d7-0e8aa72fabe0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -220,6 +228,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bfdaf7a7-855a-4d8a-bd15-3015a8dd64fa",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ae3d0de-f850-4ad9-9d62-f954f99ab0e9",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

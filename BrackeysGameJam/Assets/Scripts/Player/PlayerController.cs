@@ -17,11 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject m_bulletPrefab;
     [SerializeField] private GameObject m_boomerangBulletPrefab;
     [SerializeField] private GameObject m_bulletSpawnPoint;
+    [SerializeField] private GameObject shieldObject;
 
     [SerializeField] protected float MaxBulletSpawn; // remove from here and put in Gamemanager?
     private int bulletCount = 0;
     private GameObject boomerangObject;
-
+    private bool isShieldCharged = true;
 
     public bool CanMove = true;
     private bool m_aimWithController = false;
@@ -124,6 +125,32 @@ public class PlayerController : MonoBehaviour
                 boomerangObject.GetComponent<BoomerangProjectile>().ReturnToPlayer();
             }
         }
+    }
+
+    public void OnShield(InputAction.CallbackContext context)
+    {
+        if (context.performed && gameObject.scene.IsValid())
+        {
+            if (isShieldCharged)
+            {
+                StartCoroutine(ShieldOn());
+            }
+        }
+    }
+
+    IEnumerator ShieldOn()
+    {
+        isShieldCharged = false;
+        shieldObject.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        shieldObject.gameObject.SetActive(false);
+        StartCoroutine(ShieldRestore());
+    }
+
+    IEnumerator ShieldRestore()
+    {
+        yield return new WaitForSeconds(5);
+        isShieldCharged = true;
     }
 
     public void OnBulletDestroyed()
