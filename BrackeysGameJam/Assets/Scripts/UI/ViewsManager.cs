@@ -18,6 +18,9 @@ public class ViewsManager : MonoBehaviour
     [SerializeField] private GameHUDView m_gameHUD;
     [SerializeField] private GameObject m_gameOver;
 
+    [SerializeField] private Color m_player01Color;
+    [SerializeField] private Color m_player02Color;
+
     public GameState currentGameState;
     public GameHUDView GameHUD { get => m_gameHUD; }
     #endregion
@@ -97,6 +100,11 @@ public class ViewsManager : MonoBehaviour
     public void EnableGameOverView(string winner)
     {
         EnableView(GameState.GameOver);
+        if (winner.Contains("1"))
+            m_gameOver.GetComponent<GameOverView>().winnerText.color = m_player01Color;
+        else
+            m_gameOver.GetComponent<GameOverView>().winnerText.color = m_player02Color;
+
         m_gameOver.GetComponent<GameOverView>().winnerText.text = winner;
     }
     #endregion 
