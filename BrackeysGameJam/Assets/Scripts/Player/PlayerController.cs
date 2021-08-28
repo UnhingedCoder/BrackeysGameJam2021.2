@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private Transform m_playerModel;
     private Camera m_cam;
 
+    private Vector3 m_spawnPoint;
     private Vector3 m_moveDirection;
 
     private Vector2 m_moveInput;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        m_spawnPoint = this.transform.position;
         SetControlScheme();
     }
 
@@ -170,15 +172,23 @@ public class PlayerController : MonoBehaviour
         bulletCount--;
     }
 
-    public void OnPlayerHit(int dmg)
+    public void OnPlayerHit(int dmg, bool isLava = false)
     {
         if (m_isInvulnerable)
             return;
+
+        CanMove = false;
 
         m_pHealth.OnPlayerHit(dmg);
         m_anim.SetTrigger("Hit");
         m_invulnerabilityTimer = 0f;
         m_isInvulnerable = true;
+
+        if (isLava)
+        {
+            Debug.Log("Resetting position");
+            this.transform.position = m_spawnPoint;
+        }
     }
 
     public float CurrentHealthPercentage()
@@ -210,16 +220,10 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         if (!m_gameManager.CanGameStart())
-        {
-            m_controller.Move(Vector3.zero);
             return;
-        }
 
         if (!CanMove)
-        {
-            m_controller.Move(Vector3.zero);
             return;
-        }
 
 
         //Rotation 
