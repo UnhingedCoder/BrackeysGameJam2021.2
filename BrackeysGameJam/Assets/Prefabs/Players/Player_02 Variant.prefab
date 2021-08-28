@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 650907100194113324, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cee9347f4d0995b4e980e0f45dff0a37, type: 2}
     - target: {fileID: 945242376666725971, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -171,6 +175,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dde17316aacfbc14da578a16da7b1e66, type: 2}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key3.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key3.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key3.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.minGradient.key3.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.minGradient.key3.g
+      value: 0.79581356
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433071669959225266, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
+      propertyPath: InitialModule.startColor.minGradient.key3.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b790b7a25c58f0f4db0f65e0ff2a22e1, type: 3}
 --- !u!114 &1109520966960056895 stripped
