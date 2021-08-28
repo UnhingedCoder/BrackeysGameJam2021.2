@@ -12,13 +12,9 @@ public class BoomerangProjectile : Projectiles
     {
         if (m_onReturn)
         {
-            // transform.LookAt(controller.gameObject.transform);
-
-
             float step = 20 * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(controller.transform.position.x, controller.BulletSpawnPoint.transform.position.y,controller.transform.position.z), step);
 
-            Debug.LogError(Vector3.Distance(transform.position, controller.gameObject.transform.position));
             if (Vector3.Distance(transform.position, controller.gameObject.transform.position) < 0.5f)
             {
                 Destroy(this.gameObject);
@@ -34,7 +30,6 @@ public class BoomerangProjectile : Projectiles
 
     public override void OnCollisionEnter(Collision collision)
     {
-        Debug.LogError("Collision : " + collision.gameObject.name);
         if (collision.gameObject.tag == "Walls")
         {
             m_rigidbody.velocity = Vector3.zero;

@@ -9690,11 +9690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dc1d582303e734097620ab5375157a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1000
+  Speed: 1500
   Damage: 50
   Bounces: 0
   burstFX: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!54 &478446054
 Rigidbody:
   m_ObjectHideFlags: 0
