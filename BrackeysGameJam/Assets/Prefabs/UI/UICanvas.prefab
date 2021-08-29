@@ -4489,7 +4489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.9, y: 237}
+  m_AnchoredPosition: {x: -20, y: 237}
   m_SizeDelta: {x: 559.6379, y: 24.5918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5244225258219167789
@@ -4520,7 +4520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: eL pheNom  &  Unhinged Coder
+  m_text: Unhinged Coder  &  eL pheNom
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7411567d004cd5a4bae7c96f81b1ccd0, type: 2}
   m_sharedMaterial: {fileID: -484664338508162112, guid: 7411567d004cd5a4bae7c96f81b1ccd0, type: 2}
@@ -4535,9 +4535,9 @@ MonoBehaviour:
   m_colorMode: 2
   m_fontColorGradient:
     topLeft: {r: 0.37254903, g: 0, b: 1, a: 1}
-    topRight: {r: 0.7058824, g: 0, b: 1, a: 1}
+    topRight: {r: 0.37254903, g: 0, b: 1, a: 1}
     bottomLeft: {r: 0, g: 1, b: 0.8484955, a: 1}
-    bottomRight: {r: 0.37104416, g: 0, b: 1, a: 1}
+    bottomRight: {r: 0, g: 1, b: 0.8484955, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0

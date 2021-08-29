@@ -1121,6 +1121,7 @@ MonoBehaviour:
   m_boomerangBulletPrefab: {fileID: 3185996052414140142, guid: b259b18bf68d43a4484d5e8abd0ff723, type: 3}
   m_bulletSpawnPoint: {fileID: 7181927456673578567}
   shieldObject: {fileID: 3568508826679856559}
+  m_fireRate: 0.5
   m_MaxInvulnerabiltyTime: 1
   m_invulnerableFXEmissionRate: 20
   m_invulnerableFX: {fileID: 8433071669959225266}

@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject m_bulletPrefab;
     [SerializeField] private GameObject m_boomerangBulletPrefab;
     [SerializeField] private GameObject m_bulletSpawnPoint;
-    [SerializeField] private GameObject shieldObject;
+    [SerializeField]  GameObject shieldObject;
+
+    [SerializeField] private float m_fireRate;
 
     [Header("INVULNERABILTY")]
     [SerializeField] private float m_MaxInvulnerabiltyTime;
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public bool CanMove = true;
     private bool m_aimWithController = false;
     private bool m_isInvulnerable = false;
+    private bool m_canFire = true;
+    private float lastFired;
 
     private Transform m_playerModel;
     private Camera m_cam;
@@ -88,6 +92,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         HandleInvulnerability();
+
+        if (!m_canFire && (Time.realtimeSinceStartup - lastFired > m_fireRate))
+        {
+            m_canFire = true;
+        }
     }
     #endregion
 
@@ -111,16 +120,23 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && gameObject.scene.IsValid())
         {
-            if (!m_gameManager.CanGameStart())
-                return;
-
-            if (bulletCount < MaxBulletSpawn)
+            if (m_canFire)
             {
-                bulletCount++;
-                var bullet = Instantiate(m_bulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
-                bullet.GetComponent<BulletProjectile>().AssignController(this);
+                if (!m_gameManager.CanGameStart())
+                    return;
+
+                lastFired = Time.realtimeSinceStartup;
+                m_canFire = false;
+
+                if (bulletCount < MaxBulletSpawn)
+                {
+                    bulletCount++;
+                    var bullet = Instantiate(m_bulletPrefab, this.m_bulletSpawnPoint.transform.position, this.gameObject.transform.rotation);
+                    bullet.GetComponent<BulletProjectile>().AssignController(this);
+                }
             }
         }
+        
     }
 
     public void OnFire2(InputAction.CallbackContext context)
