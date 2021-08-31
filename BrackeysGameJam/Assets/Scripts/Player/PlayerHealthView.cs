@@ -8,6 +8,7 @@ public class PlayerHealthView : MonoBehaviour
     #region VARIABLE_REG
     [SerializeField] private GameObject m_healthContainer;
     [SerializeField] private Image m_healthBar;
+    [SerializeField] private Image m_shieldBar;
     [SerializeField] private PlayerController m_pController;
     [SerializeField] private Gradient m_healthBarGradient;
 
@@ -28,6 +29,7 @@ public class PlayerHealthView : MonoBehaviour
     private void Update()
     {
         UpdateHealth();
+        UpdateShieldStatus();
     }
     #endregion
 
@@ -40,6 +42,11 @@ public class PlayerHealthView : MonoBehaviour
 
         m_healthBar.fillAmount = m_pController.CurrentHealthPercentage();
         m_healthBar.color = m_healthBarGradient.Evaluate(m_pController.CurrentHealthPercentage());
+    }
+
+    void UpdateShieldStatus()
+    {
+        m_shieldBar.fillAmount = m_pController.GetShieldChargePercentage();
     }
     #endregion
 }

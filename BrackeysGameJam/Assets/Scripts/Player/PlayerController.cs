@@ -97,6 +97,11 @@ public class PlayerController : MonoBehaviour
         {
             m_canFire = true;
         }
+
+
+
+        OnShieldOn();
+        RestoreShield();
     }
     #endregion
 
@@ -167,24 +172,68 @@ public class PlayerController : MonoBehaviour
 
             if (isShieldCharged)
             {
-                StartCoroutine(ShieldOn());
+                SwitchShieldOn();
             }
         }
     }
 
-    IEnumerator ShieldOn()
+    float shield_currentTimer;
+    public float shield_maxTimer = 3;
+
+    float shield_restoreTimer;
+    public float shield_restoreMaxTimer = 5;
+
+    bool isShieldOn = false;
+
+    void SwitchShieldOn()
     {
+        shield_currentTimer = 0f;
+        shield_restoreTimer = 0f;
         isShieldCharged = false;
-        shieldObject.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3);
-        shieldObject.gameObject.SetActive(false);
-        StartCoroutine(ShieldRestore());
+        isShieldOn = true;
+        shieldObject.gameObject.SetActive(true); 
     }
 
-    IEnumerator ShieldRestore()
+    void OnShieldOn()
     {
-        yield return new WaitForSeconds(5);
-        isShieldCharged = true;
+        if (isShieldOn)
+        {
+            if(shield_currentTimer <= shield_maxTimer)
+            {
+                shield_currentTimer += Time.deltaTime;
+            }
+            else
+            {
+                shieldObject.gameObject.SetActive(false);
+                shield_currentTimer = 0;
+                isShieldOn = false;
+            }
+        }
+    }
+
+    void RestoreShield()
+    {
+        if (!isShieldOn && !isShieldCharged)
+        {
+            if (shield_restoreTimer <= shield_restoreMaxTimer)
+            {
+                shield_restoreTimer += Time.deltaTime;
+            }
+            else
+            {
+                shield_restoreTimer = 0;
+                isShieldCharged = true;
+            }
+        }
+    }
+
+    public float GetShieldChargePercentage()
+    {
+        if (isShieldCharged)
+        {
+            return 1;
+        }
+        return shield_restoreTimer / shield_restoreMaxTimer;
     }
 
     public void OnBulletDestroyed()
@@ -225,6 +274,7 @@ public class PlayerController : MonoBehaviour
 
     private void ResetPlayer()
     {
+        this.transform.position = m_spawnPoint;
         m_pHealth.ResetHP();
     }
 
