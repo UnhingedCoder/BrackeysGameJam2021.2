@@ -42,6 +42,13 @@ public class HeightAdjuster : MonoBehaviour
         }
     }
 
+    public void SetInitialState()
+    {
+        FetchChilds();
+        AdjustHeight();
+        AssignColor();
+    }
+
     [ContextMenu("Fetch Childs")]
     private void FetchChilds()
     {
