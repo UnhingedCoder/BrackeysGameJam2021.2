@@ -42,7 +42,7 @@ Material:
     - Voronoi_Density: 0.5
     - Wave_Speed: 0.01
     m_Colors:
-    - Layer1_Color: {r: 0.5849056, g: 0.02984002, b: 0, a: 0}
-    - Layer2_Color: {r: 1, g: 0.16651759, b: 0, a: 0}
-    - Outline_Color: {r: 2.9960785, g: 0.1882353, b: 0, a: 0}
+    - Layer1_Color: {r: 0.33456454, g: 0.020483544, b: 0, a: 0}
+    - Layer2_Color: {r: 0.15021265, g: 0.02731139, b: 0, a: 0}
+    - Outline_Color: {r: 0.2837961, g: 0.0180188, b: 0, a: 0}
   m_BuildTextureStacks: []
